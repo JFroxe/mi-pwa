@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>PWA Service Orders</title>
+</head>
+<body>
+    <div id="auth-container">
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="show-register">Register here</a></p>
+        <div id="register-container" class="hidden">
+            <h1>Register</h1>
+            <form id="register-form">
+                <label for="reg-email">Email:</label>
+                <input type="email" id="reg-email" name="email" required>
+                <label for="reg-password">Password:</label>
+                <input type="password" id="reg-password" name="password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+    <div id="app-container" class="hidden">
+        <h1>PWA Service Orders</h1>
+        <nav>
+            <ul>
+                <li><a href="#" data-tab="orders">Órdenes</a></li>
+                <li><a href="#" data-tab="clients">Clientes</a></li>
+                <li><a href="#" data-tab="services">Servicios</a></li>
+            </ul>
+        </nav>
+        <div id="content">
+            <div id="orders" class="tab-content hidden">
+                <h2>Órdenes</h2>
+                <ul id="orders-list"></ul>
+                <button id="add-order">Añadir Orden</button>
+            </div>
+            <div id="clients" class="tab-content hidden">
+                <h2>Clientes</h2>
+                <ul id="clients-list"></ul>
+                <button id="add-client">Añadir Cliente</button>
+            </div>
+            <div id="services" class="tab-content hidden">
+                <h2>Servicios</h2>
+                <ul id="services-list"></ul>
+                <button id="add-service">Añadir Servicio</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+    <script src="js/storage.js"></script>
+</body>
+</html>
