@@ -43,16 +43,40 @@
                 <h2>Órdenes</h2>
                 <ul id="orders-list"></ul>
                 <button id="add-order">Añadir Orden</button>
+                <div id="order-form-container" class="modal hidden">
+                    <form id="order-form">
+                        <label for="order-description">Descripción:</label>
+                        <input type="text" id="order-description" name="description" required>
+                        <button type="submit">Guardar Orden</button>
+                        <button type="button" id="cancel-order">Cancelar</button>
+                    </form>
+                </div>
             </div>
             <div id="clients" class="tab-content hidden">
                 <h2>Clientes</h2>
                 <ul id="clients-list"></ul>
                 <button id="add-client">Añadir Cliente</button>
+                <div id="client-form-container" class="modal hidden">
+                    <form id="client-form">
+                        <label for="client-name">Nombre:</label>
+                        <input type="text" id="client-name" name="name" required>
+                        <button type="submit">Guardar Cliente</button>
+                        <button type="button" id="cancel-client">Cancelar</button>
+                    </form>
+                </div>
             </div>
             <div id="services" class="tab-content hidden">
                 <h2>Servicios</h2>
                 <ul id="services-list"></ul>
                 <button id="add-service">Añadir Servicio</button>
+                <div id="service-form-container" class="modal hidden">
+                    <form id="service-form">
+                        <label for="service-name">Nombre del servicio:</label>
+                        <input type="text" id="service-name" name="name" required>
+                        <button type="submit">Guardar Servicio</button>
+                        <button type="button" id="cancel-service">Cancelar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
