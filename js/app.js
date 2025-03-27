@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const appContainer = document.getElementById('app-container');
     const tabs = document.querySelectorAll('nav ul li a');
     const tabContents = document.querySelectorAll('.tab-content');
+    const orderFormContainer = document.getElementById('order-form-container');
+    const clientFormContainer = document.getElementById('client-form-container');
+    const serviceFormContainer = document.getElementById('service-form-container');
 
     loginForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -46,6 +49,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.getElementById('add-order').addEventListener('click', () => {
+        orderFormContainer.classList.remove('hidden');
+    });
+
+    document.getElementById('cancel-order').addEventListener('click', () => {
+        orderFormContainer.classList.add('hidden');
+    });
+
+    document.getElementById('order-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const description = document.getElementById('order-description').value;
+        addOrder({ description });
+        orderFormContainer.classList.add('hidden');
+        loadOrders();
+    });
+
+    document.getElementById('add-client').addEventListener('click', () => {
+        clientFormContainer.classList.remove('hidden');
+    });
+
+    document.getElementById('cancel-client').addEventListener('click', () => {
+        clientFormContainer.classList.add('hidden');
+    });
+
+    document.getElementById('client-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('client-name').value;
+        addClient({ name });
+        clientFormContainer.classList.add('hidden');
+        loadClients();
+    });
+
+    document.getElementById('add-service').addEventListener('click', () => {
+        serviceFormContainer.classList.remove('hidden');
+    });
+
+    document.getElementById('cancel-service').addEventListener('click', () => {
+        serviceFormContainer.classList.add('hidden');
+    });
+
+    document.getElementById('service-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = document.getElementById('service-name').value;
+        addService({ name });
+        serviceFormContainer.classList.add('hidden');
+        loadServices();
+    });
+
     // Register the service worker
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('js/service-worker.js')
@@ -72,4 +123,43 @@ function registerUser(email, password) {
 
 function initApp() {
     // Initialize app functionalities (e.g., load stored data, set up event listeners)
+    loadOrders();
+    loadClients();
+    loadServices();
+}
+
+function loadOrders() {
+    getOrders((orders) => {
+        const ordersList = document.getElementById('orders-list');
+        ordersList.innerHTML = '';
+        orders.forEach(order => {
+            const li = document.createElement('li');
+            li.textContent = order.description;
+            ordersList.appendChild(li);
+        });
+    });
+}
+
+function loadClients() {
+    getClients((clients) => {
+        const clientsList = document.getElementById('clients-list');
+        clientsList.innerHTML = '';
+        clients.forEach(client => {
+            const li = document.createElement('li');
+            li.textContent = client.name;
+            clientsList.appendChild(li);
+        });
+    });
+}
+
+function loadServices() {
+    getServices((services) => {
+        const servicesList = document.getElementById('services-list');
+        servicesList.innerHTML = '';
+        services.forEach(service => {
+            const li = document.createElement('li');
+            li.textContent = service.name;
+            servicesList.appendChild(li);
+        });
+    });
 }
